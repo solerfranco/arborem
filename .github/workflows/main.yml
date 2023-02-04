@@ -30,7 +30,6 @@ jobs:
           - 2021.3.6f1
         targetPlatform:
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
-          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
     steps:
       - uses: actions/checkout@v2
         with:
@@ -52,5 +51,5 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
       - uses: actions/upload-artifact@v2
         with:
-          name: ChronoJam-${{ matrix.targetPlatform }}
+          name: Arborem-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
