@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
@@ -11,7 +12,8 @@ public class GameController : MonoBehaviour
 
 
     public GameObject gameOverScreen;
-    public GameObject winScreen;
+    public VideoPlayer winScreen;
+    public VideoClip gameOverVideoClip;
 
     public bool gameOver;
 
@@ -31,7 +33,9 @@ public class GameController : MonoBehaviour
     {
         gameOver = true;
         CancelInvoke();
-        winScreen.SetActive(true);
+        winScreen.Play();
+        print((int)winScreen.clip.length + 1);
+        Invoke(nameof(GoToMainMenu), (int)winScreen.clip.length + 1);
         //Root[] roots = FindObjectsOfType<Root>();
         //foreach (Root root in roots)
         //{
@@ -57,9 +61,11 @@ public class GameController : MonoBehaviour
     {
         if(rottenRoots > 5)
         {
-            Time.timeScale = 0;
-            gameOverScreen.SetActive(true);
             gameOver = true;
+            CancelInvoke();
+            winScreen.clip = gameOverVideoClip;
+            winScreen.Play();
+            Invoke(nameof(GoToMainMenu), (int)winScreen.clip.length);
         }
     }
 

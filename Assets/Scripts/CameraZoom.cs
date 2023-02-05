@@ -8,6 +8,7 @@ public class CameraZoom : MonoBehaviour
     private new Camera camera;
     public float zoomSpeed;
     public float maxSize;
+    public float moveSpeed;
 
     private void Awake()
     {
@@ -16,9 +17,12 @@ public class CameraZoom : MonoBehaviour
 
     void Update()
     {
-        if(camera.orthographicSize < maxSize)
+        if (camera.orthographicSize < maxSize)
         {
             camera.orthographicSize += zoomSpeed * Time.deltaTime;
+        } else if(Time.timeSinceLevelLoad < 60)
+        {
+            camera.transform.position += Vector3.down * Time.deltaTime * moveSpeed;
         }
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
