@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!dustParticles.isEmitting)
             {
-                dustParticles.enableEmission = true;
+                //dustParticles.enableEmission = true;
                 float tinyStep = 0.000001f;
                 dustParticles.Simulate(tinyStep, true, true, false);
                 dustParticles.Play();
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         }
         else if(dustParticles.isPlaying)
         {
-            dustParticles.enableEmission = false;
+            //dustParticles.enableEmission = false;
             //dustParticles.Pause();
         }
     }
