@@ -27,7 +27,7 @@ public class Trash : MonoBehaviour
                 if (!CheckHealth())
                 {
                     audioSource.PlayOneShot(soundsDeath[Random.Range(0, soundsDeath.Length)]);
-                    Invoke(nameof(DestroyTrash), 0.15f);
+                    Invoke(nameof(DestroyTrash), 0.25f);
                 }
             });
         }
