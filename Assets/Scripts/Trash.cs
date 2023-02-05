@@ -27,10 +27,15 @@ public class Trash : MonoBehaviour
                 if (!CheckHealth())
                 {
                     audioSource.PlayOneShot(soundsDeath[Random.Range(0, soundsDeath.Length)]);
-                    Destroy(gameObject);
+                    Invoke(nameof(DestroyTrash), 0.7f);
                 }
             });
         }
+    }
+
+    private void DestroyTrash()
+    {
+        Destroy(gameObject);
     }
 
     private bool CheckHealth()
