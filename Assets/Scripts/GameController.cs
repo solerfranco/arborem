@@ -15,6 +15,9 @@ public class GameController : MonoBehaviour
     public VideoPlayer winScreen;
     public VideoClip gameOverVideoClip;
 
+    public AudioClip clipDefeat;
+    public AudioClip clipWin;
+
     public bool gameOver;
 
     private int rottenRoots;
@@ -36,6 +39,9 @@ public class GameController : MonoBehaviour
         winScreen.Play();
         print((int)winScreen.clip.length + 1);
         Invoke(nameof(GoToMainMenu), (int)winScreen.clip.length + 1);
+        Camera.main.GetComponent<AudioSource>().clip = clipWin;
+        Camera.main.GetComponent<AudioSource>().loop = false;
+        Camera.main.GetComponent<AudioSource>().Play();
         //Root[] roots = FindObjectsOfType<Root>();
         //foreach (Root root in roots)
         //{
@@ -65,6 +71,9 @@ public class GameController : MonoBehaviour
             CancelInvoke();
             winScreen.clip = gameOverVideoClip;
             winScreen.Play();
+            Camera.main.GetComponent<AudioSource>().clip = clipDefeat;
+            Camera.main.GetComponent<AudioSource>().loop = false;
+            Camera.main.GetComponent<AudioSource>().Play();
             Invoke(nameof(GoToMainMenu), (int)winScreen.clip.length);
         }
     }
